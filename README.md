@@ -2,6 +2,12 @@
 
 ---
 
+## Google Form validation 1/2 journée
+
+[Lien validation 1/2 journéee](https://docs.google.com/forms/d/e/1FAIpQLSc7mnELwbW94rK33TZ8fzLNUvXeRMKGlO47GuknCbOPPzk5iw/viewform)
+
+---
+
 ## Documentation
 
 ### Installations et lancement
