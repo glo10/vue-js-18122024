@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Première application Vue</h1>
+    </header>
+    <main id="app">
+        <h2>{{ name }}</h2>
+        <p v-html="profession"></p>
+        <p>Age : {{ age }}</p>
+        <p>Consentement : {{ isOk }}</p>
+        <p>Adresse : {{ adress.code }} {{ adress.name }} </p>
+        <p>Langages de programmation</p>
+        <ul>
+            <li v-for="language in languages">{{ language }}</li>
+        </ul>
+    </main>
+    <footer>
+        <p>Glodie Tshimini</p>
+    </footer>
+    <script src="https://unpkg.com/vue@3.5.13/dist/vue.global.js"></script>
+    <script>
+        console.log('vue', Vue)
+        // Vue est un objet globale disponible grâce au CDN ci-dessus
+        const { createApp } = Vue
+
+        // Création d'une instance de vue
+        const app = createApp({
+            // data() fonctionne qui retourne un objet contenant vos variables
+            data() {
+                return {
+                    name : 'Glodie', // ie const name = 'Glodie'
+                    age: 33,
+                    profession: '<strong><i>dev Fullstack</i></strong>',
+                    isOk: true,
+                    adress: {
+                        name: 'Defense',
+                        code: 92
+                    },
+                    languages: [ '<strong>PHP</strong>', 'JS', 'JAVA'],
+                    
+                }
+            }
+        })
+        // Montage dans le DOM
+        app.mount('#app')
+    </script>
+</body>
+</html>
