@@ -4,20 +4,42 @@
     <h2>Mon prénom à l'envers : {{ reverseName }}</h2>
     <h2>Mon prénom avec un préfixe : {{ nameWithPrefix }}</h2>
     <h2>Prénom : {{ name }}</h2>
+    <!-- v-if pour un élément plutot stable dans le temps dont la condition varie très peu-->
     <div v-if="users.length > 2">
       <h3>Liste d'utilisateurs</h3>
+      <ul>
+        <li v-for="user in users" :key="user.id">{{ user.name }}</li>
+      </ul>
     </div>
     <div v-else>
       <p>Moins de 2 utilisateurs</p>
     </div>
+    <!--Pour un élément dont la condition varie souvent-->
     <p v-show="name.length > 10">Votre prénom fait moins de 10 caractères</p>
+    <!-- bind de la class pour récupérer une donnée dynamique js
+    si checkCity est true le paragraphe aura la class green ie <p class="green">
+    -->
     <p id="checkCity" :class="{green: checkCity}">{{ checkCity ? 'OK': 'KO' }}</p>
     <p>{{ city }} : {{ typeof city }}</p>
     <p>
       <label for="city">Votre ville</label>
-      <input type="text" name="city"  id="city" v-model.trim="city">
+      <!-- v-model : liaison bidirectionnelle pour l'écriture et la lecture
+        à utiliser pour les champs du formulaire pour par exemple faire des contrôles à la saisie ou perte de focus
+      -->
+      <input type="text" name="city"  id="city" v-model.trim="city" @keyup="console.log('clavier')">
     </p>
-    <img :src="src" alt="Image de M2i formation">
+    <section>
+      <h2>Les fruits</h2>
+    <button @click="toggleFruits">{{ isShowFruits ? 'Cacher': 'Afficher' }}</button>
+    <ol v-show="isShowFruits">
+      <li v-for="(fruit, index) in fruits" :key="`${fruit}-${index}`">
+        {{  fruit }}
+      </li>
+    </ol>
+    </section>
+    <div>
+    <img :src="src" alt="Image de M2i formation" @mouseenter="console.log('entrer dans la zone de l\'image')" @mouseleave="console.log('sortie')">
+    </div>
   </div>
 </template>
 
@@ -34,15 +56,28 @@ export default {
       src: 'https://sign.m2iformation.fr/images/logom2i-esign.png',
       users : [
         {
-          name: 'Charles'
+          id: 1,
+          name: 'Charles',
+          ss: '191'
         },
         {
-          name: 'Anne'
+          id: 2,
+          name: 'Anne',
+          ss: '291'
         },
-        // {
-        //   name: 'Eric'
-        // }
-      ]
+        {
+          id: 3,
+          name: 'Eric',
+          ss: '191'
+        },
+        {
+          id: 4,
+          name: 'Eric',
+          ss: '181'
+        }
+      ],
+      fruits: [ 'Pomme', 'orange', 'banane', 'raisin'],
+      isShowFruits: false,
     }
   },
   computed: {
@@ -60,9 +95,13 @@ export default {
       return this.city.length > 1
     }
   },
-  watch() {
-
-  }
+  methods: {
+    toggleFruits(event) {
+      console.log('event', event)
+      this.isShowFruits = !this.isShowFruits
+    }
+  },
+  watch() {}
 }
 </script>
 
