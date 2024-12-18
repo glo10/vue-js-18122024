@@ -1,32 +1,23 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <h2>Mon prénom à l'envers : {{ reverseName }}</h2>
+    <h2>Mon prénom avec un préfixe : {{ nameWithPrefix }}</h2>
+    <h2>Prénom : {{ name }}</h2>
+    <div v-if="users.length > 2">
+      <h3>Liste d'utilisateurs</h3>
+    </div>
+    <div v-else>
+      <p>Moins de 2 utilisateurs</p>
+    </div>
+    <p v-show="name.length > 10">Votre prénom fait moins de 10 caractères</p>
+    <p id="checkCity" :class="{green: checkCity}">{{ checkCity ? 'OK': 'KO' }}</p>
+    <p>{{ city }} : {{ typeof city }}</p>
     <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
+      <label for="city">Votre ville</label>
+      <input type="text" name="city"  id="city" v-model.trim="city">
     </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+    <img :src="src" alt="Image de M2i formation">
   </div>
 </template>
 
@@ -35,12 +26,57 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  data() {
+    return {
+      name : 'Glodie',
+      city: '',
+      src: 'https://sign.m2iformation.fr/images/logom2i-esign.png',
+      users : [
+        {
+          name: 'Charles'
+        },
+        {
+          name: 'Anne'
+        },
+        // {
+        //   name: 'Eric'
+        // }
+      ]
+    }
+  },
+  computed: {
+    reverseName() {
+      let reverse = ''
+      for(let i = (this.name.length-1); i >= 0; i--) {
+        reverse += this.name[i]
+      }
+      return reverse
+    },
+    nameWithPrefix() {
+      return `Prefix ${this.name}`// ie 'Prefix ' + this.name
+    }, 
+    checkCity() {
+      return this.city.length > 1
+    }
+  },
+  watch() {
+
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+#checkCity {
+  color: red;
+}
+
+#checkCity.green {
+  color: green;
+}
+
 h3 {
   margin: 40px 0 0;
 }
