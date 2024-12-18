@@ -3,8 +3,8 @@
 
 ## Recommandations
 
-- Travaillez directement sur le fichier `src/components/HelloWorld.vue` du projet conçu avec `npm init` ou `npm create` en remplaçant le contenu de ce fichier par le code ci-après
-
+- Travaillez directement sur le fichier `src/components/HelloWorld.vue` du projet conçu avec *Vue-CLI*
+<!-- 
 ```js
 <script setup></script>
 
@@ -31,8 +31,7 @@ h3 { font-size: 1.2rem; }
   }
 }
 </style>
-
-```
+``` -->
 
 ## Enoncé
 
