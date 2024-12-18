@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+  <!-- Icon sous forme de composant Vue depuis https://icones.js.org -->
     <h1>{{ msg }}</h1>
     <h2>Mon prénom à l'envers : {{ reverseName }}</h2>
     <h2>Mon prénom avec un préfixe : {{ nameWithPrefix }}</h2>
@@ -8,7 +9,10 @@
     <div v-if="users.length > 2">
       <h3>Liste d'utilisateurs</h3>
       <ul>
-        <li v-for="user in users" :key="user.id">{{ user.name }}</li>
+        <li v-for="user in users" :key="user.id">
+          {{ user.name }}
+          <IconDelete/>
+        </li>
       </ul>
     </div>
     <div v-else>
@@ -44,8 +48,10 @@
 </template>
 
 <script>
+import IconDelete from './icons/IconDelete.vue';
 export default {
   name: 'HelloWorld',
+  components: { IconDelete },
   props: {
     msg: String
   },
