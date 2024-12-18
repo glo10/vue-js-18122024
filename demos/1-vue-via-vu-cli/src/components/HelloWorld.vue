@@ -1,4 +1,5 @@
 <template>
+  <!-- template: partie dédiée au HTML-->
   <div class="hello">
   <!-- Icon sous forme de composant Vue depuis https://icones.js.org -->
     <h1>{{ msg }}</h1>
@@ -34,27 +35,48 @@
     </p>
     <section>
       <h2>Les fruits</h2>
+      <!-- @click ou v-on:click permet de greffer un événement de type click à l'élément-->
+      <!-- Au click, la méthode toggleFruits sera exécutée -->
     <button @click="toggleFruits">{{ isShowFruits ? 'Cacher': 'Afficher' }}</button>
     <ol v-show="isShowFruits">
+      <!-- v-for permet d'itérer un élément itérable (tableau, objet)
+      Il faut obligatoire une directe :key avec une valeur unique pour permettre à vue
+      d'identifier et de modifier uniquement un élément du tableau et pas l'intégralité du tableau
+      lorsqu'il y a des changements
+      Pour définir une key :
+      1. Un id lorsqu'il existe
+      2. Ou une concaténation de plusieurs données de l'élément pour former une clé unique
+      3. Ou JSON.stringify(objet) en dernier recours
+      -->
       <li v-for="(fruit, index) in fruits" :key="`${fruit}-${index}`">
         {{  fruit }}
       </li>
     </ol>
     </section>
     <div>
-    <img :src="src" alt="Image de M2i formation" @mouseenter="console.log('entrer dans la zone de l\'image')" @mouseleave="console.log('sortie')">
+    <img
+      :src="src"
+      alt="Image de M2i formation"
+      @mouseenter="console.log('entrer dans la zone de l\'image')"
+      @mouseleave="console.log('sortie')"
+    >
     </div>
   </div>
 </template>
 
 <script>
+// script : partie dédiée au JS
 import IconDelete from './icons/IconDelete.vue';
 export default {
+  // name : nom du composant idéalement le même nom que le nom de votre fichier
   name: 'HelloWorld',
+  // components : on liste les composants enfants du composant parent ici après les avoir importé au préalable
   components: { IconDelete },
+  // props : on verra plus tard, il s'agit des données transmises par le parent à l'enfant
   props: {
     msg: String
   },
+  // data : données propres de notre composant ie variables
   data() {
     return {
       name : 'Glodie',
@@ -86,6 +108,7 @@ export default {
       isShowFruits: false,
     }
   },
+  // computed : données calculées ou transformées des data sans les modifier directement
   computed: {
     reverseName() {
       let reverse = ''
@@ -101,19 +124,24 @@ export default {
       return this.city.length > 1
     }
   },
+  // methods : fonctions pour réagir aux événements ou modifier les propriétés data()
   methods: {
     toggleFruits(event) {
       console.log('event', event)
       this.isShowFruits = !this.isShowFruits
     }
   },
+  // watch: observer les modifications d'une variable pour lancer une callback afin d'effectuer des opérations supplémentaires
   watch() {}
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+/* style : Partie dédié au CSS
+scoped est un attribut qui ajoute un attribut data-{id unique} permettant d'appliquer
+le style ci-dessous uniquement au composant actuel
+*/
 #checkCity {
   color: red;
 }
