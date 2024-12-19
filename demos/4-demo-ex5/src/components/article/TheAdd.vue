@@ -1,12 +1,22 @@
 <script>
 export default {
-    data () {
-
+  emits: ['app-article-new'],
+  props: {
+    sections: Array,
+  },
+  data() {
+    return {
+      article: { name: "", section: null, isBought: false },
+      errorMessage: "",
+    };
+  },
+  methods: {
+    add() {
+      console.log("Emission événement TheAdd à HelloWorld");
+      this.$emit("app-article-new", this.article);
     },
-    methods: {
-        
-    }
-}
+  },
+};
 </script>
 <template>
   <div>
@@ -34,6 +44,6 @@ export default {
 </template>
 <style scoped>
 ol {
-    background: green;
+  background: green;
 }
 </style>

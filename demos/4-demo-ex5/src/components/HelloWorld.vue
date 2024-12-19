@@ -1,19 +1,13 @@
 <template>
   <div class="hello">
-    <TheAdd />
-    <TheAdd />
-    <TheList />
-    <TheList />
-    <!-- field { name: 'firstname', type:'text'} -->
-    <div v-for="field in fields" :key="field.name">
-      <TheInput :field="field" />
-    </div>
+    <TheAdd :sections="sections" @app-article-new="add"/>
+    <TheList :articles="articles" />
   </div>
 </template>
 
 <script>
 import TheAdd from './article/TheAdd.vue'
-import TheList from './article/TheList.vue'
+import TheList from './article/TheList.vue';
 export default {
   name: "HelloWorld",
   components: {
@@ -32,13 +26,10 @@ export default {
     }
   },
   methods: {
-    add() {
-      if(this.article.name === '') {
-        this.errorMessage = 'Nom obligatoire'
-        return
-      }
-      this.articles.push({...this.article})
-      this.article = { name: '', section: null, isBought : false }
+    add(payload) {
+      const article = JSON.parse(JSON.stringify(payload))
+      console.log('payload reception par HelloWorld', article)
+      this.articles.push(article)
     },
     addWithParam(param) {
       console.log('param', JSON.parse(JSON.stringify(param)))
