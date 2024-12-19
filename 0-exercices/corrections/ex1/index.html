@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correction exercice 1</title>
+</head>
+<body>
+    <h1>Correction exercice 1</h1>
+    <div id="app">
+        <!-- Code de vue JS à injecter ici-->
+        <p>
+            <!-- Affiche la valeur de la propriété firstname de user -->
+            {{ user.firstname }}
+        </p>
+        <p>{{ user.lastname }}</p>
+        <p>{{ user.age }}</p>
+    </div>
+    <!--Import du CDN qui possède une variable gloable vue -->
+    <script src="https://unpkg.com/vue@3.5.13/dist/vue.global.js"></script>
+    <script>
+        // decomposition ou destructuration de l'objet vue pour récupérer uniquement la fonction createApp()
+        const { createApp } = Vue
+        const app = createApp({
+            // data() est la fonction dédiée pour stocker les données (variables)
+            data() {
+                return {
+                    user: {
+                        firstname: 'Glodie',
+                        lastname: 'Tshimini',
+                        age: 32
+                    }
+                }
+            }
+        })
+        // Montage de l'application Vue dans le DOM via div qui possède un ID app
+        app.mount('#app')
+    </script>
+</body>
+</html>
