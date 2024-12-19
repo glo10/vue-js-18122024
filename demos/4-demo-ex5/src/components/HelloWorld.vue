@@ -2,17 +2,20 @@
   <div class="hello">
     <TheAdd :sections="sections" @app-article-new="add"/>
     <TheList :articles="articles" />
+    <TheUserList />
   </div>
 </template>
 
 <script>
 import TheAdd from './article/TheAdd.vue'
 import TheList from './article/TheList.vue';
+import TheUserList from './users/TheList.vue';
 export default {
   name: "HelloWorld",
   components: {
     TheAdd,
-    TheList
+    TheList,
+    TheUserList
   },
   props: {
     msg: String,
