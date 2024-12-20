@@ -22,7 +22,7 @@ export default {
   <div>
     <input
       type="text"
-      placeholder="Nom de l'article"
+      placeholder="Saisissez le nom de l'article"
       v-model="article.name"
     />
     <p>Choisissez les rayons</p>
@@ -39,7 +39,6 @@ export default {
     <hr />
     <p v-if="errorMessage.length > 0">{{ errorMessage }}</p>
     <button @click="add">Ajouter un article</button>
-    <button @click="addWithParam(article.name)">Ajouter en passant une info</button>
   </div>
 </template>
 <style scoped>
