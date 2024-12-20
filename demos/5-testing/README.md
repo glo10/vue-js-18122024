@@ -23,10 +23,10 @@
 
 - `npm i -D jsdom @vitejs/plugin-vue`
 
-### Configuration vitest.config.js
+### Configuration vitest.config.js pour vu-cli
 
 ```js
-// vite.config.js
+// vitest.config.js
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 
@@ -50,6 +50,24 @@ export default defineConfig({
 })
 ```
 
+### Configuration vitest.config.js pour npm
+
+```js
+import { fileURLToPath } from 'node:url'
+import { mergeConfig, defineConfig, configDefaults } from 'vitest/config'
+import viteConfig from './vite.config'
+
+export default mergeConfig(
+  viteConfig,
+  defineConfig({
+    test: {
+      environment: 'jsdom',
+      exclude: ['node_modules'],
+      root: fileURLToPath(new URL('./', import.meta.url))
+    }
+  })
+)
+```
 ## Intégration
 
 ### librairies
