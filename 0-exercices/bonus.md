@@ -1,12 +1,12 @@
 - [ ] Mise en place d'une pagination pour les produits d'OpenFoodFact (OPFF)
-- [ ] Mise en place d'une authentification avant d'accéder à la liste
 - [ ] Page détaillé d'un produit OPFF
 - [ ] Une page pour ajouter les rayons
 - [ ] Ajout des produits OPFF à la liste de courses
 - [ ] Ajout du prix
 - [ ] Ajout de la quantité
-- [ ] Total du payer en numéraire
+- [ ] (Si ajout prix + quantité), calculer le total à payer en numéraire
 - [ ] Pas de duplication du nom de l'article
-- [ ] Ajouter un controle à la saisie
-- [ ] Ajouter des messages helper à la saisie lorsqu'il manque le rayon
+- [ ] Ajouter un controle à la saisie (vérifier que c'est nom valide)
+- [ ] Ajouter des messages d'aides à la saisie lorsqu'il manque le rayon, le nom ou une duplication du produit
 - [ ] Ajouter les rayons provenant d'OPFF
+- [ ] Mise en place d'une authentification avant d'accéder à la liste
