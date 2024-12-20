@@ -5,7 +5,7 @@ import TheAdd from '../../../src/components/article/TheAdd.vue'
 // Pour créer des blocs de test autrement dit les regrouper par thématique, fonctions, etc.
 describe('Testing the component TheAdd', () => {
     describe('Testing HTML template', () =>  {
-        dexcribe('Testing input element', () => {
+        describe('Testing input element', () => {
             it('Should have content "type=text"', () => {
                 // Arrange
                 const myComponent = mount(TheAdd)
@@ -31,7 +31,7 @@ describe('Testing the component TheAdd', () => {
             const input = myComponent.findAll('input[type=text]')
             expect(input).toHaveLength(1)
         })
-        
+
         it.todo('Should have 3 radio inputs', {
             // Arrange
             // const myComponent = mount(TheAdd, {
