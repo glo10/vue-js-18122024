@@ -74,4 +74,18 @@ export default mergeConfig(
 
 ## Fonctionnels (end-to-end)
 
+### Fichier de config cypress.config.js
+
+```js
+import { defineConfig } from 'cypress'
+
+export default defineConfig({
+  e2e: {
+    specPattern: 'cypress/e2e/**/*.{cy,spec}.{js,jsx,ts,tsx}',
+    baseUrl: 'http://localhost:4173',
+    defaultCommandTimeout: 8000
+  }
+})
+```
+
 ### librairies
