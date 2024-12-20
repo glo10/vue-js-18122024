@@ -22,7 +22,7 @@ export default {
   <div>
     <input
       type="text"
-      placeholder="Saisissez le nom de l'article"
+      placeholder="Nom de l'article"
       v-model="article.name"
     />
     <p>Choisissez les rayons</p>

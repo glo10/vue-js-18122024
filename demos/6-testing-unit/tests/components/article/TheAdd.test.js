@@ -1,9 +1,14 @@
-import { describe , it, expect } from 'vitest'
+import { describe , it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import TheAdd from '../../../src/components/article/TheAdd.vue'
+import { nextTick } from 'vue'
 
 // Pour créer des blocs de test autrement dit les regrouper par thématique, fonctions, etc.
 describe('Testing the component TheAdd', () => {
+    afterEach(() =>  {
+        vi.clearAllMocks()
+    })
+
     describe('Testing HTML template', () =>  {
         describe('Testing input element', () => {
             it('Should have content "type=text"', () => {
@@ -13,7 +18,7 @@ describe('Testing the component TheAdd', () => {
                 const input = myComponent.find('input[type=text]')
                 const content = input.html()
                 // Assert
-                expect(content).toContain('type="text"')
+                expect(content).toMatchInlineSnapshot(`"<input data-v-1cadf911="" type="text" placeholder="Nom de l'article">"`)
             })
         })
         it('Should exists', () => {
@@ -43,6 +48,25 @@ describe('Testing the component TheAdd', () => {
         it.todo('Should have one button')
     })
     describe('Testing events', () => {
-        it.todo('Should emitted event "app-article-new"')
+        it.only('Should emitted event "app-article-new"', async () => {
+            // Arrange
+            const wrapper = mount(TheAdd, {
+                props: {
+                    sections: ['A', 'B', 'C']
+                }
+            })
+            // doublure de la fonction add
+            vi.spyOn(wrapper.vm, 'add')
+            const inputText = wrapper.find('[type=text]')
+            await inputText.setValue('Article 1')
+            await wrapper.find('[type=radio]').setValue()
+            await nextTick()
+            console.log('content', wrapper.html())
+            const button = wrapper.find('button')
+            // Act
+            await button.trigger('click')
+            // Assert
+            expect(wrapper.emitted('app-article-new')).toBeTruthy()
+        })
     })
 })
