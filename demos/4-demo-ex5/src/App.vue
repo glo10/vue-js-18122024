@@ -1,5 +1,5 @@
 <script>
-import TheMainMenu from 'components/navigation/TheMainMenu.vue'
+import TheMainMenu from './components/navigation/TheMainMenu.vue'
 export default {
   name : 'App',
   components : { TheMainMenu }
