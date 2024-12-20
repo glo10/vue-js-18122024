@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DEMO fetch</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      fetch("https://world.openfoodfacts.org/api/v3/product/737628064502.json")
+        .then((res) => res.json())
+        .then((result) => {
+          /**
+         *
+         *
+         const code = res.product.code,
+         brands = res.product.brands
+         categories = res.product.categories
+
+        const product = {
+            code : result.product.code,
+            brands : result.product.brands
+        }
+         */
+
+          const {
+            code,
+            brands,
+            categories,
+            creator,
+            created_at,
+            image_url,
+            ingredients,
+            packaging_materials,
+            nutriscore_grade,
+            product_name,
+            sources,
+          } = res.product;
+
+          // notation classique
+          const productClassic = {
+            code: result.product.code,
+            brands: result.product.brands,
+          };
+        })
+        // notation ES6
+        const productEs6 = {
+            code, // code : res.product.code
+            brands,
+            categories,
+            creator,
+            created_at,
+            image_url,
+            ingredients,
+            packaging_materials,
+            nutriscore_grade,
+            product_name,
+            sources,
+        }
+        .catch((error) => console.log("error", error));
+    </script>
+  </body>
+</html>
